@@ -10,7 +10,11 @@ public static class CatalogModule
         IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("Database");
-        services.AddDbContext<CatalogDbContext>(options => options.UseNpgsql(connectionString));
+
+        services.AddDbContext<CatalogDbContext>(options => 
+            options.UseNpgsql(connectionString));
+
+        services.AddScoped<IDataSeeder, CatalogDataSeeder>();
 
         return services;
     }
@@ -18,14 +22,7 @@ public static class CatalogModule
     public static IApplicationBuilder UseCatalogModule(this IApplicationBuilder app)
     {
         app.UseMigration<CatalogDbContext>();
-        //InitializeDatabaseAysnc(app).GetAwaiter().GetResult();
         return app;
     }
 
-    //private static async Task InitializeDatabaseAysnc(IApplicationBuilder app)
-    //{
-    //    using var scope = app.ApplicationServices.CreateScope();
-    //    var context = scope.ServiceProvider.GetRequiredService<CatalogDbContext>();
-    //    await context.Database.MigrateAsync();
-    //}
 }
