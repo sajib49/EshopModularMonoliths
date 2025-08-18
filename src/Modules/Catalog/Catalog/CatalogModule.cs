@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Data;
+using Shared.Data.Interceptors;
 namespace Catalog;
 
 public static class CatalogModule
@@ -11,8 +12,12 @@ public static class CatalogModule
     {
         var connectionString = configuration.GetConnectionString("Database");
 
-        services.AddDbContext<CatalogDbContext>(options => 
-            options.UseNpgsql(connectionString));
+        services.AddDbContext<CatalogDbContext>(options =>
+        {
+            options.AddInterceptors(new AuditableEntityInterceptor());
+            options.UseNpgsql(connectionString);
+
+        });
 
         services.AddScoped<IDataSeeder, CatalogDataSeeder>();
 
