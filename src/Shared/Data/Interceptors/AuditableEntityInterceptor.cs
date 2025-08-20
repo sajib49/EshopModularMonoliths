@@ -21,10 +21,7 @@ public class AuditableEntityInterceptor : SaveChangesInterceptor
 
     private void UpdateEntities(DbContext? context)
     {
-        if (context == null)
-        {
-            return;
-        }
+        if (context == null) return;
 
         foreach (var entry in context.ChangeTracker.Entries<IEntity>())
         {
@@ -40,9 +37,8 @@ public class AuditableEntityInterceptor : SaveChangesInterceptor
                 entry.Entity.LastModified = DateTime.UtcNow;
             }
         }
-    }   
+    }
 }
-
 
 public static class Extensions
 {
