@@ -1,9 +1,19 @@
-﻿namespace Catalog.Products.Features.DeleteProduct;
+﻿using Catalog.Products.Features.UpdateProduct;
+
+namespace Catalog.Products.Features.DeleteProduct;
 
 public record DeleteProductCommand(Guid ProductId)
     : ICommand<DeleteProductResult>;
 
 public record DeleteProductResult(bool IsSuccess);
+
+public class DeleteProductCommandValidator : AbstractValidator<DeleteProductCommand>
+{
+    public DeleteProductCommandValidator()
+    {
+        RuleFor(x => x.ProductId).NotEmpty().WithMessage("Id is required");
+    }
+}
 
 internal class DeleteProductHandler(CatalogDbContext dbContext)
     : ICommandHandler<DeleteProductCommand, DeleteProductResult>
