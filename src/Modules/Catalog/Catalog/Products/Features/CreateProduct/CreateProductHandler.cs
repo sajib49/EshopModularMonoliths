@@ -4,7 +4,7 @@ public record CreateProductCommand
     (ProductDto Product)
     : ICommand<CreateProductResult>;
 
-public record CreateProductResult(Guid id);
+public record CreateProductResult(Guid Id);
 
 internal class CreateProductHandler(CatalogDbContext dbContext)
     : ICommandHandler<CreateProductCommand, CreateProductResult>
