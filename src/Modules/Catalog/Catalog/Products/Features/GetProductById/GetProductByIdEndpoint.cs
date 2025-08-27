@@ -3,7 +3,7 @@
 public record GetProductByIdRequest
     (Guid Id);
 
-public record GetProductByIdResponse(ProductDto ProductDto);
+public record GetProductByIdResponse(ProductDto Product);
 
 public class GetProductByIdEndpoint : ICarterModule
 {
