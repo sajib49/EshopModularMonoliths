@@ -1,6 +1,4 @@
-﻿using Catalog.Products.Features.UpdateProduct;
-
-namespace Catalog.Products.Features.DeleteProduct;
+﻿namespace Catalog.Products.Features.DeleteProduct;
 
 public record DeleteProductCommand(Guid ProductId)
     : ICommand<DeleteProductResult>;
@@ -25,7 +23,7 @@ internal class DeleteProductHandler(CatalogDbContext dbContext)
         
         if (product is null)
         {
-            throw new KeyNotFoundException($"Product with ID {command.ProductId} not found.");
+            throw new ProductNotFoundException(command.ProductId);
         }
                 
         dbContext.Products.Remove(product);

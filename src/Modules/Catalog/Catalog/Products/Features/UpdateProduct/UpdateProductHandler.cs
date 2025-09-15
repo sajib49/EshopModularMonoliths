@@ -25,7 +25,7 @@ internal class UpdateProductHandler(CatalogDbContext dbContext)
         
         if (product is null)
         {
-            throw new KeyNotFoundException($"Product with ID {command.Product.Id} not found.");
+            throw new ProductNotFoundException(command.Product.Id);
         }
 
         UpdateProductWithNewValues(product, command.Product);
