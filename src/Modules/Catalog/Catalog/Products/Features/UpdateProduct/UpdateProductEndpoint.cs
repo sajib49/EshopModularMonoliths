@@ -1,5 +1,4 @@
-﻿
-using Catalog.Products.Features.CreateProduct;
+﻿using Catalog.Products.Features.CreateProduct;
 
 namespace Catalog.Products.Features.UpdateProduct;
 

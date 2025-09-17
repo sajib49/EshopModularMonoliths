@@ -1,16 +1,17 @@
 ﻿using Catalog.Products.Features.DeleteProduct;
+using Shared.Pagination;
 
 namespace Catalog.Products.Features.GetProducts;
 
-public record GetProductsResponse(IEnumerable<ProductDto> Products);
+public record GetProductsResponse(PaginatedResult<ProductDto> Products);
 
 public class GetProductEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("/products", async (ISender sender) =>
+        app.MapGet("/products", async ([AsParameters] PaginationRequest request, ISender sender) =>
         {
-            var result = await sender.Send(new GetProductsQuery());
+            var result = await sender.Send(new GetProductsQuery(request));
 
             var response = result.Adapt<GetProductsResponse>();
 
