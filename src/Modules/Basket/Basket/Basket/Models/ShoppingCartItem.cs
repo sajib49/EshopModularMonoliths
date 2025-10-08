@@ -1,6 +1,6 @@
 ﻿using Shared.DDD;
 
-namespace Basket.Basket.Model;
+namespace Basket.Basket.Models;
 
 public class ShoppingCartItem : Entity<Guid>
 {

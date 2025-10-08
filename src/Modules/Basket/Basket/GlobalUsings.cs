@@ -1,4 +1,9 @@
 ﻿global using Shared.DDD;
-global using Basket.Basket.Model;
+global using Basket.Basket.Models;
 global using Microsoft.EntityFrameworkCore;
 global using System.Reflection;
+global using Basket.Data;
+global using Basket.Data.Dtos;
+global using FluentValidation;
+global using Shared.CQRS;
+global using Basket.Data.Exceptions;

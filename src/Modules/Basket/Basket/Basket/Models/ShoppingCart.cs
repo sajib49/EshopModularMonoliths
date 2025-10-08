@@ -1,4 +1,4 @@
-﻿namespace Basket.Basket.Model;
+﻿namespace Basket.Basket.Models;
 
 public class ShoppingCart : Aggregate<Guid>
 {
