@@ -1,9 +1,6 @@
-﻿using Basket.Basket.Features.AddItemIntoBasket;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+﻿namespace Basket.Basket.Features.RemoveItemFromBasket;
 
-namespace Basket.Basket.Features.RemoveItemFromBasket;
-
-public record RemoveItemFromBasketCommand(string UserName, ShoppingCartItemDto ShoppingCartItem)
+public record RemoveItemFromBasketCommand(string UserName, Guid ProductId)
     : ICommand<RemoveItemFromBasketResult>;
 
 public record RemoveItemFromBasketResult(Guid Id);
@@ -13,11 +10,11 @@ public class RemoveItemFromBasketCommandValidator : AbstractValidator<RemoveItem
     public RemoveItemFromBasketCommandValidator()
     {
         RuleFor(x => x.UserName).NotEmpty().WithMessage("UserName is required.");
-        RuleFor(x => x.ShoppingCartItem.ProductId).NotEmpty().WithMessage("Product Id is required.");
+        RuleFor(x => x.ProductId).NotEmpty().WithMessage("Product Id is required.");
     }
 }
 
-internal class RemoveItemFromBasket(BasketDbContext dbContext) : ICommandHandler<RemoveItemFromBasketCommand, RemoveItemFromBasketResult>
+internal class RemoveItemFromBasketHandler(BasketDbContext dbContext) : ICommandHandler<RemoveItemFromBasketCommand, RemoveItemFromBasketResult>
 {
     public async Task<RemoveItemFromBasketResult> Handle(RemoveItemFromBasketCommand command, CancellationToken cancellationToken)
     {
