@@ -11,7 +11,25 @@ builder.Host.UseSerilog((context, config) =>
 //    config.WithModules(catalogModules);
 //});
 
-builder.Services.AddCarterWithAssemblies(typeof(CatalogModule).Assembly);
+var catelogAssembly = typeof(CatalogModule).Assembly;
+var basketAssembly = typeof(BasketModule).Assembly;
+
+builder.Services.AddCarterWithAssemblies(
+    catelogAssembly,
+    basketAssembly);
+
+builder.Services.AddMediatRWithAssemblies(
+    catelogAssembly,
+    basketAssembly);
+
+//builder.Services.AddMediatR(config =>
+//{
+//    config.RegisterServicesFromAssemblies(catelogAssembly, basketAssembly);
+//    config.AddOpenBehavior(typeof(ValidationBehavior<,>));
+//    config.AddOpenBehavior(typeof(LoggingBehavior<,>));
+//});
+
+//builder.Services.AddValidatorsFromAssemblies([catelogAssembly, basketAssembly]);
 
 builder.Services
     .AddCatalogModule(builder.Configuration)

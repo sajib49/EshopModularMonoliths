@@ -20,6 +20,7 @@ internal class CreateBasketHandler(BasketDbContext dbContext) : ICommandHandler<
     public async Task<CreateBasketResult> Handle(CreateBasketCommand command, CancellationToken cancellationToken)
     {
         var shoppingCart = CreateNewBasket(command.ShoppingCart);
+        dbContext.ShoppingCarts.Add(shoppingCart);
         await dbContext.SaveChangesAsync(cancellationToken);
         return new CreateBasketResult(shoppingCart.Id);
     }

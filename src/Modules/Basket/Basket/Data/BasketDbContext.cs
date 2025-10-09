@@ -8,7 +8,7 @@ public class BasketDbContext : DbContext
     }
 
     public DbSet<ShoppingCart> ShoppingCarts => Set<ShoppingCart>();
-    public DbSet<ShoppingCartItem> Products => Set<ShoppingCartItem>();
+    public DbSet<ShoppingCartItem> ShoppingCartItems => Set<ShoppingCartItem>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
