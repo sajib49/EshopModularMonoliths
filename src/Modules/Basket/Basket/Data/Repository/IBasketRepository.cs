@@ -1,6 +1,6 @@
 ﻿namespace Basket.Data.Repository;
 
-internal interface IBasketRepository
+public interface IBasketRepository
 {
     Task<ShoppingCart> GetBasket(string UserName, bool asNoTracking = true, CancellationToken cancellationToken = default);
     Task<ShoppingCart> CreateBasket(ShoppingCart basket, CancellationToken cancellationToken = default);
