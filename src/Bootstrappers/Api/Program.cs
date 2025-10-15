@@ -31,6 +31,11 @@ builder.Services.AddMediatRWithAssemblies(
 
 //builder.Services.AddValidatorsFromAssemblies([catelogAssembly, basketAssembly]);
 
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetValue<string>("Redis");
+});
+
 builder.Services
     .AddCatalogModule(builder.Configuration)
     .AddBasketModule(builder.Configuration)
