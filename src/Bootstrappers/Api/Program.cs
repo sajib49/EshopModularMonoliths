@@ -1,3 +1,6 @@
+using Microsoft.Extensions.Configuration;
+using StackExchange.Redis;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog((context, config) => 
@@ -33,7 +36,11 @@ builder.Services.AddMediatRWithAssemblies(
 
 builder.Services.AddStackExchangeRedisCache(options =>
 {
-    options.Configuration = builder.Configuration.GetValue<string>("Redis");
+    //options.Configuration = builder.Configuration.GetValue<string>("Redis");
+   
+    options.Configuration = builder.Configuration.GetConnectionString("Redis");
+
+
 });
 
 builder.Services
