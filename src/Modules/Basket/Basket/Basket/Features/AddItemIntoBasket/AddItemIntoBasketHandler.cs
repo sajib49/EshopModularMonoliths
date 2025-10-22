@@ -21,6 +21,8 @@ internal class AddItemIntoBasketHandler(IBasketRepository basketRepository) : IC
     {
        var shoppingCart = await basketRepository.GetBasket(command.UserName, false, cancellationToken);
 
+        //var result = await sender.Send(new GetProductByIdQuery(id));
+
         shoppingCart.AddItem(
             productId: command.ShoppingCartItem.ProductId,
             quantity: command.ShoppingCartItem.Quantity,

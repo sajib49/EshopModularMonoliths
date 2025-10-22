@@ -1,4 +1,6 @@
-﻿namespace Catalog.Products.EventHandlers;
+﻿
+
+namespace Catalog.Products.EventHandlers;
 
 
 public class ProductCreatedEventHandler(ILogger<ProductCreatedEventHandler> logger)
