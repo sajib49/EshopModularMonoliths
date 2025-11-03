@@ -1,4 +1,5 @@
-﻿using Catalog.Contracts.Products.Features.GetProductById;
+﻿using Basket.Basket.Dtos;
+using Catalog.Contracts.Products.Features.GetProductById;
 
 namespace Basket.Basket.Features.AddItemIntoBasket;
 

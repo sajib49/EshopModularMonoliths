@@ -1,4 +1,6 @@
-﻿namespace Basket.Basket.Features.GetBasket;
+﻿using Basket.Basket.Dtos;
+
+namespace Basket.Basket.Features.GetBasket;
 
 //public record GetBasketRequest(string UserName); 
 public record GetBasketResponse(ShoppingCartDto ShoppingCart);

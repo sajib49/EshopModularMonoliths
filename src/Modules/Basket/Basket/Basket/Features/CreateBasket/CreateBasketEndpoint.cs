@@ -1,4 +1,6 @@
-﻿namespace Basket.Basket.Features.CreateBasket;
+﻿using Basket.Basket.Dtos;
+
+namespace Basket.Basket.Features.CreateBasket;
 
 public record CreateBasketRequest(ShoppingCartDto ShoppingCart); 
 public record CreateBasketResponse(Guid Id);

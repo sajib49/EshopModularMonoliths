@@ -1,5 +1,4 @@
-﻿using Shared.DDD;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Basket.Basket.Models;
 
@@ -31,7 +30,7 @@ public class ShoppingCartItem : Entity<Guid>
     }
 
     [JsonConstructor]
-    internal ShoppingCartItem(
+    public ShoppingCartItem(
         Guid id,
         Guid shoppingCartId,
         Guid productId,
@@ -47,5 +46,11 @@ public class ShoppingCartItem : Entity<Guid>
         Color = color;
         Price = price;
         ProductName = productName;
+    }
+
+    public void UpdatePrice(decimal newPrice)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(newPrice);
+        Price = newPrice;
     }
 }

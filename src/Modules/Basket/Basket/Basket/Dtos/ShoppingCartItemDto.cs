@@ -1,4 +1,4 @@
-﻿namespace Basket.Data.Dtos;
+﻿namespace Basket.Basket.Dtos;
 
 public record ShoppingCartItemDto(Guid Id,
     Guid ShoppingCartId,

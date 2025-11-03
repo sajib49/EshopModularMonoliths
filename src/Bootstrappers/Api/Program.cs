@@ -1,6 +1,3 @@
-using Microsoft.Extensions.Configuration;
-using StackExchange.Redis;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog((context, config) => 
@@ -13,6 +10,9 @@ builder.Host.UseSerilog((context, config) =>
 
 //    config.WithModules(catalogModules);
 //});
+
+
+
 
 var catelogAssembly = typeof(CatalogModule).Assembly;
 var basketAssembly = typeof(BasketModule).Assembly;
@@ -42,6 +42,9 @@ builder.Services.AddStackExchangeRedisCache(options =>
 
 
 });
+
+builder.Services
+    .AddMassTransitWithAssemblies(builder.Configuration, catelogAssembly, basketAssembly);
 
 builder.Services
     .AddCatalogModule(builder.Configuration)
