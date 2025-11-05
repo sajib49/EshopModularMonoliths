@@ -18,14 +18,17 @@ builder.Host.UseSerilog((context, config) =>
 
 var catelogAssembly = typeof(CatalogModule).Assembly;
 var basketAssembly = typeof(BasketModule).Assembly;
+var orderingAssembly = typeof(OrderingModule).Assembly;
 
 builder.Services.AddCarterWithAssemblies(
     catelogAssembly,
-    basketAssembly);
+    basketAssembly,
+    orderingAssembly);
 
 builder.Services.AddMediatRWithAssemblies(
     catelogAssembly,
-    basketAssembly);
+    basketAssembly,
+    orderingAssembly);
 
 //builder.Services.AddMediatR(config =>
 //{
